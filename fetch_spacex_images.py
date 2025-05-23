@@ -16,10 +16,10 @@ def _get_spacex_image_urls(launch_id: str):
     return json_dict['links']['flickr']['original']
 
 
-def fetch_spacex_images(launch_id: str):
-    makedirs(SPACEX_FOLDER, exist_ok=True)
+def fetch_spacex_images(launch_id: str, folder: str = SPACEX_FOLDER):
+    makedirs(folder, exist_ok=True)
 
     image_urls = _get_spacex_image_urls(launch_id)
     for image_url in image_urls:
-        filename = path.join(SPACEX_FOLDER, get_filename_from_url(image_url))
+        filename = path.join(folder, get_filename_from_url(image_url))
         save_image(image_url, filename)
