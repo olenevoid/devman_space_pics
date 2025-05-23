@@ -9,16 +9,6 @@ SPACEX_FOLDER = path.join(IMAGE_FOLDER_NAME, 'spacex')
 NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
 
 
-def save_image(url: str, filename: str, params: dict = None):
-    
-    response = requests.get(url, params=params)
-
-    response.raise_for_status()
-
-    with open(filename, 'wb') as file:
-        file.write(response.content)
-
-
 def get_filename_from_url(url):
     parsed_url = urlparse(url)
 
