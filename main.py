@@ -9,18 +9,6 @@ SPACEX_FOLDER = path.join(IMAGE_FOLDER_NAME, 'spacex')
 NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
 
 
-def get_filename_from_url(url):
-    parsed_url = urlparse(url)
-
-    name = parsed_url.path.split('/')[-1]
-    name = unquote(name)
-
-    if path.splitext(name)[1] == '':
-        name = name+'.jpeg'
-
-    return name
-
-
 def get_nasa_apod_image_urls(api_key: str, count: int):
     url = 'https://api.nasa.gov/planetary/apod'
 
