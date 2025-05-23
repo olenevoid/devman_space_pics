@@ -1,7 +1,6 @@
 import requests
 from os import makedirs, path, environ
 from dotenv import load_dotenv
-from urllib.parse import urlparse, unquote
 
 
 IMAGE_FOLDER_NAME = 'images'
