@@ -1,7 +1,6 @@
-import requests
-from os import makedirs, path, environ
+from os import makedirs, environ
 from dotenv import load_dotenv
-from helpers import save_image, get_filename_from_url, IMAGE_FOLDER_NAME
+from helpers import IMAGE_FOLDER_NAME
 from fetch_spacex_images import fetch_spacex_images
 from nasa.fetch_apod_images import fetch_nasa_apod_images
 from nasa.fetch_epic_images import fetch_nasa_epic_images
