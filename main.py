@@ -1,6 +1,7 @@
 import requests
 from os import makedirs, path, environ
 from dotenv import load_dotenv
+from helpers import save_image, get_filename_from_url
 
 
 IMAGE_FOLDER_NAME = 'images'
