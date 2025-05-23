@@ -1,0 +1,6 @@
+.venv
+images
+
+*.env
+*.jpeg
+*.json
