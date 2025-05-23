@@ -1,6 +1,7 @@
 import requests
 from helpers import get_filename_from_url, save_image, IMAGE_FOLDER_NAME
 from os import path, makedirs
+from argparse import ArgumentParser
 
 
 SPACEX_FOLDER = path.join(IMAGE_FOLDER_NAME, 'spacex')
@@ -23,3 +24,26 @@ def fetch_spacex_images(launch_id: str, folder: str = SPACEX_FOLDER):
     for image_url in image_urls:
         filename = path.join(folder, get_filename_from_url(image_url))
         save_image(image_url, filename)
+
+
+def main():
+    parser = ArgumentParser(
+        description='Загружает фотографии с запусков SpaceX'
+    )
+    parser.add_argument('launch_id', help='id запуска', type=str)
+    parser.add_argument('-f', '--folder', help='Папка для сохранения')
+
+    args = parser.parse_args()
+
+    print(f'Идет загрузка фотографий запуска {args.launch_id}')
+
+    if args.folder is not None:
+        fetch_spacex_images(args.launch_id, args.folder)
+    else:
+        fetch_spacex_images(args.launch_id)
+
+    print('Загрузка фотографий завершена')
+
+
+if __name__ == '__main__':
+    main()
