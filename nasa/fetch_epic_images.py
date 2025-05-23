@@ -1,5 +1,4 @@
 from os import makedirs, path
-from nasa import NASA_FOLDER
 from helpers import get_filename_from_url, save_image
 import requests
 
@@ -42,7 +41,7 @@ def get_nasa_epic_image_urls(api_key: str, date: str):
 
 
 def fetch_nasa_epic_images(api_key: str, limit: int | None = None):
-    makedirs(NASA_FOLDER, exist_ok=True)
+    makedirs(folder, exist_ok=True)
     
     last_date = get_last_nasa_epic_date_with_photos(api_key)
     image_urls = get_nasa_epic_image_urls(api_key, last_date)
@@ -53,5 +52,5 @@ def fetch_nasa_epic_images(api_key: str, limit: int | None = None):
         image_urls = image_urls[:limit]
 
     for image_url in image_urls:
-        filename = path.join(NASA_FOLDER, get_filename_from_url(image_url))
+        filename = path.join(folder, get_filename_from_url(image_url))
         save_image(image_url, filename, params)
