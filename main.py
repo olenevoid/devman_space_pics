@@ -1,10 +1,9 @@
 import requests
 from os import makedirs, path, environ
 from dotenv import load_dotenv
-from helpers import save_image, get_filename_from_url
+from helpers import save_image, get_filename_from_url, IMAGE_FOLDER_NAME
 
 
-IMAGE_FOLDER_NAME = 'images'
 SPACEX_FOLDER = path.join(IMAGE_FOLDER_NAME, 'spacex')
 NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
 
