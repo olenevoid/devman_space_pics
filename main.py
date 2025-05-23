@@ -74,7 +74,7 @@ def get_spacex_image_urls(launch_id: str):
     return json_dict['links']['flickr']['original']
 
 
-def fetch_spacex_images(launch_id: str = '605b4b95aa5433645e37d041'):
+def fetch_spacex_images(launch_id: str):
     makedirs(SPACEX_FOLDER, exist_ok=True)
 
     image_urls = get_spacex_image_urls(launch_id)
@@ -114,9 +114,9 @@ def main():
     nasa_api_key = environ['NASA_API_KEY']
     makedirs(IMAGE_FOLDER_NAME, exist_ok=True)
     
-    fetch_spacex_images()
-    fetch_nasa_apod_images(nasa_api_key, 5)    
-    fetch_nasa_epic_images(nasa_api_key, 5)
+    fetch_spacex_images('605b4b95aa5433645e37d041')
+    fetch_nasa_apod_images(nasa_api_key, 3)    
+    fetch_nasa_epic_images(nasa_api_key, 3)
     
 
 if __name__ == '__main__':
