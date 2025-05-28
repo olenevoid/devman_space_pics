@@ -4,7 +4,7 @@ import requests
 
 
 def get_last_nasa_epic_date_with_photos(api_key: str):
-    url = f'https://api.nasa.gov/EPIC/api/natural/available'
+    url = 'https://api.nasa.gov/EPIC/api/natural/available'
 
     params = {
         'api_key': api_key
@@ -16,8 +16,8 @@ def get_last_nasa_epic_date_with_photos(api_key: str):
     return response.json()[-1]
 
 
-def get_nasa_epic_image_urls(api_key: str, date: str):    
-    
+def get_nasa_epic_image_urls(api_key: str, date: str):
+
     url = f'https://api.nasa.gov/EPIC/api/natural/date/{date}'
 
     params = {
@@ -28,7 +28,7 @@ def get_nasa_epic_image_urls(api_key: str, date: str):
     response.raise_for_status()
 
     data = response.json()
-    
+
     image_urls = []
     date_with_slashes = date.replace('-', '/')
 
@@ -42,7 +42,7 @@ def get_nasa_epic_image_urls(api_key: str, date: str):
 
 def _fetch_nasa_epic_images(api_key: str, folder, limit: int | None = None):
     makedirs(folder, exist_ok=True)
-    
+
     last_date = get_last_nasa_epic_date_with_photos(api_key)
     image_urls = get_nasa_epic_image_urls(api_key, last_date)
 
