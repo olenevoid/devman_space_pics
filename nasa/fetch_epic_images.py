@@ -33,7 +33,7 @@ def get_nasa_epic_image_urls(api_key: str, date: str):
     date_with_slashes = date.replace('-', '/')
 
     for image_data in data:
-        filename = f'{image_data['image']}.png'
+        filename = f'{image_data["image"]}.png'
         image_url = f'https://api.nasa.gov/EPIC/archive/natural/{date_with_slashes}/png/{filename}'
         image_urls.append(image_url)
 
