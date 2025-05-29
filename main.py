@@ -2,7 +2,8 @@ from os import makedirs, environ
 from dotenv import load_dotenv
 from helpers import IMAGE_FOLDER_NAME
 from fetch_spacex_images import fetch_spacex_images
-import nasa
+from fetch_apod_images import fetch_nasa_apod_images
+from fetch_epic_images import fetch_nasa_epic_images
 import telegram
 
 
@@ -13,8 +14,8 @@ def init_bot(token: str) -> telegram.Bot:
 
 def test_load_images(nasa_api_key):
     fetch_spacex_images('605b4b95aa5433645e37d041')
-    nasa.fetch_apod_images(nasa_api_key, 3)
-    nasa.fetch_epic_images(nasa_api_key, 3)
+    fetch_nasa_apod_images(nasa_api_key, 3)
+    fetch_nasa_epic_images(nasa_api_key, limit=3)
 
 
 def send_message_to_channel(bot, channel_id):
@@ -32,6 +33,7 @@ def main():
 
     bot = init_bot(tg_bot_token)
 
+    test_load_images(nasa_api_key)
     send_message_to_channel(bot, tg_channel_id)
 
 
