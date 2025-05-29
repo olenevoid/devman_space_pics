@@ -1,6 +1,6 @@
 from os import makedirs, environ
 from dotenv import load_dotenv
-from helpers import IMAGE_FOLDER_NAME
+from image_helpers import IMAGE_FOLDER_NAME
 from fetch_spacex_images import fetch_spacex_images
 from fetch_apod_images import fetch_nasa_apod_images
 from fetch_epic_images import fetch_nasa_epic_images

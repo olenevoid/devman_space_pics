@@ -1,5 +1,5 @@
 from os import makedirs, path
-from helpers import get_filename_from_url, save_image, IMAGE_FOLDER_NAME
+from image_helpers import get_filename_from_url, save_image, IMAGE_FOLDER_NAME
 import requests
 from argparse import ArgumentParser
 
