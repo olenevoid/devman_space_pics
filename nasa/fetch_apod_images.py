@@ -22,7 +22,7 @@ def get_nasa_apod_image_urls(api_key: str, count: int):
     return image_urls
 
 
-def _fetch_nasa_apod_images(api_key: str, count: int, folder: str):
+def fetch_nasa_apod_images(api_key, count, folder = NASA_FOLDER):
     makedirs(folder, exist_ok=True)
 
     image_urls = get_nasa_apod_image_urls(api_key, count)

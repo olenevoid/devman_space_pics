@@ -40,7 +40,7 @@ def get_nasa_epic_image_urls(api_key: str, date: str):
     return image_urls
 
 
-def _fetch_nasa_epic_images(api_key: str, folder, limit: int | None = None):
+def fetch_nasa_epic_images(api_key, folder = NASA_FOLDER, limit = None):
     makedirs(folder, exist_ok=True)
 
     last_date = get_last_nasa_epic_date_with_photos(api_key)
