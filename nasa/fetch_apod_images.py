@@ -4,6 +4,9 @@ from helpers import get_filename_from_url, save_image
 import requests
 
 
+NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
+
+
 def get_nasa_apod_image_urls(api_key: str, count: int):
     url = 'https://api.nasa.gov/planetary/apod'
 

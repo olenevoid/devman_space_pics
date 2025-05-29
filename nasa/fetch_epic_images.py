@@ -3,6 +3,9 @@ from helpers import get_filename_from_url, save_image
 import requests
 
 
+NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
+
+
 def get_last_nasa_epic_date_with_photos(api_key: str):
     url = 'https://api.nasa.gov/EPIC/api/natural/available'
 
