@@ -1,6 +1,7 @@
 from os import makedirs, path
-from helpers import get_filename_from_url, save_image
+from helpers import get_filename_from_url, save_image, IMAGE_FOLDER_NAME
 import requests
+from argparse import ArgumentParser
 
 
 NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
@@ -57,3 +58,27 @@ def fetch_nasa_epic_images(api_key, folder = NASA_FOLDER, limit = None):
     for image_url in image_urls:
         filename = path.join(folder, get_filename_from_url(image_url))
         save_image(image_url, filename, params)
+
+
+def main():
+    parser = ArgumentParser(
+        description='Загружает фотографии с запусков SpaceX'
+    )
+    parser.add_argument('api_key', help='API-ключ NASA', type=str)
+    parser.add_argument('-f', '--folder', help='Папка для сохранения')
+    parser.add_argument('limit', help='Задает лимит на скачивание', type=str)
+
+    args = parser.parse_args()
+
+    print(f'Идет загрузка фотографий запуска {args.api_key}')
+
+    if args.folder is not None:
+        fetch_nasa_epic_images(args.api_key, args.folder, limit=args.limit)
+    else:
+        fetch_nasa_epic_images(args.api_key, limit=args.limit)
+
+    print('Загрузка фотографий завершена')
+
+
+if __name__ == '__main__':
+    main()
