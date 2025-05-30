@@ -1,6 +1,6 @@
 import requests
 from urllib.parse import urlparse, unquote
-from os import path, listdir
+from os import path
 
 
 IMAGE_FOLDER_NAME = 'images'
@@ -29,23 +29,10 @@ def get_filename_from_url(url):
 
 
 def get_all_images():
-    directories = listdir(IMAGE_FOLDER_NAME)
+    from os import walk
     images = []
-
-    for directory in directories:
-        path_ = path.join(IMAGE_FOLDER_NAME, directory)
-        images += get_images(path_)
-
-    return images
-
-
-def get_images(directory: str):
-    images = []
-
-    for filename in listdir(directory):
-        path_ = path.join(directory, filename)
-
-        if path.isfile(path_):
-            images.append(path_)
-
+    for (root, _, files) in walk(IMAGE_FOLDER_NAME,topdown=True):
+        for filename in files:
+            image = path.join(root, filename)
+            images.append(image)
     return images
