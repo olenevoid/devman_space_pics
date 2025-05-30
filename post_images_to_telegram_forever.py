@@ -9,9 +9,6 @@ DEFAULT_DELAY = 240
 
 
 def post_images(images, delay = DEFAULT_DELAY):
-    if delay is None:
-        delay = DEFAULT_DELAY
-    
     for image in images:
         print(f'Публикация изображения {image}')
         post_image(image)
@@ -35,7 +32,10 @@ def main():
     while True:
         images = get_all_images()
         random.shuffle(images)
-        post_images(images, args.delay)
+        if args.delay:
+            post_images(images, args.delay)
+        else:
+            post_images(images)
         
 
 
