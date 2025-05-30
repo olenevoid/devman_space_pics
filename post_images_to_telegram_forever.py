@@ -3,6 +3,8 @@ from image_helpers import get_all_images
 from time import sleep
 from argparse import ArgumentParser
 import random
+from dotenv import load_dotenv
+from os import getenv
 
 
 DEFAULT_DELAY = 240
@@ -16,7 +18,18 @@ def post_images(images, delay = DEFAULT_DELAY):
         sleep(delay*60)
 
 
+def get_delay():
+    delay = getenv('POSTING_DELAY')
+    if delay:
+        return delay
+    return DEFAULT_DELAY
+
+
 def main():
+    load_dotenv()
+
+    delay = get_delay()
+
     parser = ArgumentParser(
         description='Публикует изображения в бесконечном цикле'
     )
@@ -35,7 +48,7 @@ def main():
         if args.delay:
             post_images(images, args.delay)
         else:
-            post_images(images)
+            post_images(images, delay)
         
 
 
