@@ -21,7 +21,7 @@ def post_images(images, delay = DEFAULT_DELAY):
 def get_delay():
     delay = getenv('POSTING_DELAY')
     if delay:
-        return delay
+        return int(delay)
     return DEFAULT_DELAY
 
 
