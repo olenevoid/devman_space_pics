@@ -16,9 +16,16 @@ def post_image(image_path: str):
 
 def main():
     parser = ArgumentParser(
-        description='Публикует указанное изображение. Если не использованы аргументы, публикует случайное изображение.'
+        description=(
+            'Публикует указанное изображение. Если не использованы '
+            'аргументы, публикует случайное изображение.'
+            )
     )
-    parser.add_argument('-i', '--image', help=' Путь к изображению для публикации')
+    parser.add_argument(
+        '-i',
+        '--image',
+        help=' Путь к изображению для публикации'
+        )
 
     args = parser.parse_args()
 
