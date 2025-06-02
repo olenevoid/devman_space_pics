@@ -7,6 +7,24 @@ from argparse import ArgumentParser
 SPACEX_FOLDER = path.join(IMAGE_FOLDER_NAME, 'spacex')
 
 
+def get_all_launches():
+    url = 'https://api.spacexdata.com/v5/launches'
+    response = requests.get(url)
+    response.raise_for_status()
+
+    launches: list = response.json()
+    launches.reverse()
+    return launches
+
+
+def get_latest_lanuch_images():
+    launches = get_all_launches()
+
+    for launch in launches:
+        if len(launch['links']['flickr']['original']) > 0:
+            return launch['links']['flickr']['original']
+
+
 def _get_spacex_image_urls(launch_id: str):
     url = f'https://api.spacexdata.com/v5/launches/{launch_id}'
     response = requests.get(url)
