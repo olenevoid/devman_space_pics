@@ -68,7 +68,7 @@ def main():
     )
     parser.add_argument('api_key', help='API-ключ NASA', type=str)
     parser.add_argument('-f', '--folder', help='Папка для сохранения')
-    parser.add_argument('limit', help='Задает лимит на скачивание', type=str)
+    parser.add_argument('limit', help='Задает лимит на скачивание', type=int)
 
     args = parser.parse_args()
 
