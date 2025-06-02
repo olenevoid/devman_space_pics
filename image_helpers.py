@@ -31,7 +31,7 @@ def get_filename_from_url(url):
 def get_all_images():
     from os import walk
     images = []
-    for (root, _, files) in walk(IMAGE_FOLDER_NAME,topdown=True):
+    for (root, _, files) in walk(IMAGE_FOLDER_NAME, topdown=True):
         for filename in files:
             image = path.join(root, filename)
             images.append(image)
