@@ -46,11 +46,18 @@ def get_nasa_epic_image_urls(api_key: str, date: str):
     return image_urls
 
 
-def fetch_nasa_epic_images(api_key, folder=NASA_FOLDER, limit=None):
+def fetch_nasa_epic_images(
+        api_key,
+        date=None,
+        folder=NASA_FOLDER,
+        limit=None):
+
     makedirs(folder, exist_ok=True)
 
-    last_date = get_last_nasa_epic_date_with_photos(api_key)
-    image_urls = get_nasa_epic_image_urls(api_key, last_date)
+    if date is None:
+        date = get_last_nasa_epic_date_with_photos(api_key)
+
+    image_urls = get_nasa_epic_image_urls(api_key, date)
 
     params = {'api_key': api_key}
 
@@ -66,18 +73,23 @@ def main():
     parser = ArgumentParser(
         description='Загружает фотографий Земли'
     )
-    parser.add_argument('api_key', help='API-ключ NASA', type=str)
-    parser.add_argument('-f', '--folder', help='Папка для сохранения')
+    parser.add_argument('api_key', help='API-ключ NASA')
     parser.add_argument('limit', help='Задает лимит на скачивание', type=int)
+    parser.add_argument('-d', '--date', help='Дата в формате YYYY-MM-DD')
+    parser.add_argument('-f', '--folder', help='Папка для сохранения')
 
     args = parser.parse_args()
 
     print('Идет загрузка фотографий')
 
     if args.folder is not None:
-        fetch_nasa_epic_images(args.api_key, args.folder, limit=args.limit)
+        fetch_nasa_epic_images(
+            args.api_key,
+            date=args.date,
+            folder=args.folder,
+            limit=args.limit)
     else:
-        fetch_nasa_epic_images(args.api_key, limit=args.limit)
+        fetch_nasa_epic_images(args.api_key, date=args.date, limit=args.limit)
 
     print('Загрузка фотографий завершена')
 
