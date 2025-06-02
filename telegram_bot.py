@@ -12,10 +12,10 @@ class ImagePosterBot():
 
     def send_image(self, image_path):
         image = open(image_path, 'rb')
-        self.bot.send_photo(chat_id=self.tg_channel_id, photo=image) 
-    
+        self.bot.send_photo(chat_id=self.tg_channel_id, photo=image)
 
-def main():    
+
+def main():
     bot = ImagePosterBot().bot
     print(bot.get_me())
 
