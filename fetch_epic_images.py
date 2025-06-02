@@ -37,14 +37,16 @@ def get_nasa_epic_image_urls(api_key: str, date: str):
     date_with_slashes = date.replace('-', '/')
 
     for image_data in data:
-        filename = f'{image_data["image"]}.png'
-        image_url = f'https://api.nasa.gov/EPIC/archive/natural/{date_with_slashes}/png/{filename}'
+        filename = f'{image_data["image"]}.png'        
+        image_url = 'https://api.nasa.gov/EPIC/archive/natural/{0}/png/{1}'
+        image_url.format(date_with_slashes, filename)
+
         image_urls.append(image_url)
 
     return image_urls
 
 
-def fetch_nasa_epic_images(api_key, folder = NASA_FOLDER, limit = None):
+def fetch_nasa_epic_images(api_key, folder=NASA_FOLDER, limit=None):
     makedirs(folder, exist_ok=True)
 
     last_date = get_last_nasa_epic_date_with_photos(api_key)
