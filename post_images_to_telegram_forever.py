@@ -10,7 +10,7 @@ from os import getenv
 DEFAULT_DELAY = 240
 
 
-def post_images(images, delay = DEFAULT_DELAY):
+def post_images(images, delay=DEFAULT_DELAY):
     for image in images:
         print(f'Публикация изображения {image}')
         post_image(image)
@@ -39,9 +39,9 @@ def main():
         '--delay',
         help='Задержка в минутах. По умолчанию 240 (4 часа)'
         )
-    
-    args = parser.parse_args()    
-    
+
+    args = parser.parse_args()
+
     while True:
         images = get_all_images()
         random.shuffle(images)
@@ -49,7 +49,6 @@ def main():
             post_images(images, args.delay)
         else:
             post_images(images, delay)
-        
 
 
 if __name__ == '__main__':
