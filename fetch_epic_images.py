@@ -73,7 +73,7 @@ def main():
 
     args = parser.parse_args()
 
-    print(f'Идет загрузка фотографий запуска {args.api_key}')
+    print('Идет загрузка фотографий')
 
     if args.folder is not None:
         fetch_nasa_epic_images(args.api_key, args.folder, limit=args.limit)
