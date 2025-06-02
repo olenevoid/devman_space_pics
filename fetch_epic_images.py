@@ -65,7 +65,7 @@ def fetch_nasa_epic_images(api_key, folder=NASA_FOLDER, limit=None):
 
 def main():
     parser = ArgumentParser(
-        description='Загружает фотографии с запусков SpaceX'
+        description='Загружает фотографий Земли'
     )
     parser.add_argument('api_key', help='API-ключ NASA', type=str)
     parser.add_argument('-f', '--folder', help='Папка для сохранения')
