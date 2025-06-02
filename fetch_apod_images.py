@@ -25,7 +25,7 @@ def get_nasa_apod_image_urls(api_key: str, count: int):
     return image_urls
 
 
-def fetch_nasa_apod_images(api_key, count, folder = NASA_FOLDER):
+def fetch_nasa_apod_images(api_key, count, folder=NASA_FOLDER):
     makedirs(folder, exist_ok=True)
 
     image_urls = get_nasa_apod_image_urls(api_key, count)
@@ -39,18 +39,22 @@ def main():
     parser = ArgumentParser(
         description='Загружает фотографии с запусков SpaceX'
     )
-    parser.add_argument('launch_id', help='id запуска', type=str)
-    parser.add_argument('count', help='Количество загружаемых снимков')
+    parser.add_argument('api_key', help='API-ключ NASA', type=str)
+    parser.add_argument(
+        'count',
+        help='Количество загружаемых снимков',
+        type=int
+        )
     parser.add_argument('-f', '--folder', help='Папка для сохранения')
 
     args = parser.parse_args()
 
-    print(f'Идет загрузка фотографий запуска {args.launch_id}')
+    print('Идет загрузка фотографий дня NASA')
 
     if args.folder is not None:
-        fetch_nasa_apod_images(args.launch_id, args.count, args.folder)
+        fetch_nasa_apod_images(args.api_key, args.count, args.folder)
     else:
-        fetch_nasa_apod_images(args.launch_id, args.count)
+        fetch_nasa_apod_images(args.api_key, args.count)
 
     print('Загрузка фотографий завершена')
 
