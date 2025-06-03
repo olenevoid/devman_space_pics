@@ -35,9 +35,12 @@ def _get_spacex_image_urls(launch_id: str):
     return json_dict['links']['flickr']['original']
 
 
-def fetch_spacex_images(launch_id: str = None, folder: str = SPACEX_FOLDER):
+def fetch_spacex_images(launch_id: str = None, folder: str = None):
+    if folder is None:
+        folder = SPACEX_FOLDER    
+
     makedirs(folder, exist_ok=True)
-    
+
     if launch_id:
         image_urls = _get_spacex_image_urls(launch_id)
     else:
@@ -52,17 +55,17 @@ def main():
     parser = ArgumentParser(
         description='Загружает фотографии с запусков SpaceX'
     )
-    parser.add_argument('launch_id', help='id запуска', type=str)
+    parser.add_argument('-L', '--launch_id', help='id запуска')
     parser.add_argument('-f', '--folder', help='Папка для сохранения')
 
     args = parser.parse_args()
 
-    print(f'Идет загрузка фотографий запуска {args.launch_id}')
-
-    if args.folder is not None:
-        fetch_spacex_images(args.launch_id, args.folder)
+    if args.launch_id:
+        print(f'Идет загрузка фотографий запуска {args.launch_id}')
     else:
-        fetch_spacex_images(args.launch_id)
+        print('Идет загрузка фотографий последнего запуска')
+    
+    fetch_spacex_images(args.launch_id, args.folder)
 
     print('Загрузка фотографий завершена')
 
