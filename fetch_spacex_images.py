@@ -17,7 +17,7 @@ def get_all_launches():
     return launches
 
 
-def get_latest_lanuch_images():
+def get_latest_lanuch_image_urls():
     launches = get_all_launches()
 
     for launch in launches:
@@ -35,10 +35,14 @@ def _get_spacex_image_urls(launch_id: str):
     return json_dict['links']['flickr']['original']
 
 
-def fetch_spacex_images(launch_id: str, folder: str = SPACEX_FOLDER):
+def fetch_spacex_images(launch_id: str = None, folder: str = SPACEX_FOLDER):
     makedirs(folder, exist_ok=True)
+    
+    if launch_id:
+        image_urls = _get_spacex_image_urls(launch_id)
+    else:
+        image_urls = get_latest_lanuch_image_urls()
 
-    image_urls = _get_spacex_image_urls(launch_id)
     for image_url in image_urls:
         filename = path.join(folder, get_filename_from_url(image_url))
         save_image(image_url, filename)
