@@ -20,8 +20,7 @@ def get_last_nasa_epic_date_with_photos(api_key: str):
     return response.json()[-1]
 
 
-def get_nasa_epic_image_urls(api_key: str, date: str):
-
+def get_nasa_epic_data(api_key: str, date: str):
     url = f'https://api.nasa.gov/EPIC/api/natural/date/{date}'
 
     params = {
@@ -31,12 +30,14 @@ def get_nasa_epic_image_urls(api_key: str, date: str):
     response = requests.get(url, params=params)
     response.raise_for_status()
 
-    data = response.json()
+    return response.json()
 
+
+def get_nasa_epic_image_urls(nasa_epic_data: dict, date: str):
     image_urls = []
     date_with_slashes = date.replace('-', '/')
 
-    for image_data in data:
+    for image_data in nasa_epic_data:
         filename = f'{image_data["image"]}.png'
         image_url = 'https://api.nasa.gov/EPIC/archive/natural/{0}/png/{1}'
         image_url = image_url.format(date_with_slashes, filename)
@@ -57,7 +58,9 @@ def fetch_nasa_epic_images(
     if date is None:
         date = get_last_nasa_epic_date_with_photos(api_key)
 
-    image_urls = get_nasa_epic_image_urls(api_key, date)
+    nasa_epic_data = get_nasa_epic_data(api_key, date)
+
+    image_urls = get_nasa_epic_image_urls(nasa_epic_data, date)
 
     params = {'api_key': api_key}
 
