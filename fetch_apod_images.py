@@ -51,7 +51,8 @@ def main():
         default=nasa_api_key
     )
     parser.add_argument(
-        'count',
+        '-c',
+        '--count',
         help='Количество загружаемых снимков',
         type=int,
         default=3
@@ -66,11 +67,8 @@ def main():
     args = parser.parse_args()
 
     print('Идет загрузка фотографий дня NASA')
-
-    if args.folder is not None:
-        fetch_nasa_apod_images(args.api_key, args.count, args.folder)
-    else:
-        fetch_nasa_apod_images(args.api_key, args.count)
+    
+    fetch_nasa_apod_images(args.api_key, args.count, args.folder)
 
     print('Загрузка фотографий завершена')
 
