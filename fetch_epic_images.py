@@ -96,7 +96,12 @@ def main():
         help='Дата в формате YYYY-MM-DD',
         default=get_last_nasa_epic_date_with_photos()
     )
-    parser.add_argument('-f', '--folder', help='Папка для сохранения')
+    parser.add_argument(
+        '-f',
+        '--folder',
+        help='Папка для сохранения',
+        default=NASA_FOLDER
+    )
 
     args = parser.parse_args()
 
