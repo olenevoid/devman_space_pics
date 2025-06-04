@@ -14,7 +14,7 @@ def get_nasa_apod_image_urls(api_key: str, count: int):
     params = {
         'count': count,
         'api_key': api_key
-        }
+    }
 
     response = requests.get(url, params=params)
     response.raise_for_status()
@@ -54,7 +54,7 @@ def main():
         'count',
         help='Количество загружаемых снимков',
         type=int
-        )
+    )
     parser.add_argument('-f', '--folder', help='Папка для сохранения')
 
     args = parser.parse_args()
