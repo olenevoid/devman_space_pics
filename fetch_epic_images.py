@@ -62,7 +62,7 @@ def fetch_nasa_epic_images(
 
     params = {'api_key': api_key}
 
-    if (limit is not None) and (limit < len(image_urls)):
+    if limit and (limit < len(image_urls)):
         image_urls = image_urls[:limit]
 
     for image_url in image_urls:
