@@ -88,7 +88,7 @@ def main():
         '--limit',
         help='Задает лимит на скачивание',
         type=int,
-        default=3
+        default=None
     )
     parser.add_argument(
         '-d',
