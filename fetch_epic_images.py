@@ -49,14 +49,11 @@ def get_nasa_epic_image_urls(nasa_epic_data: dict, date: str):
 
 def fetch_nasa_epic_images(
         api_key,
-        date=None,
+        date,
         folder=NASA_FOLDER,
         limit=None):
 
     makedirs(folder, exist_ok=True)
-
-    if date is None:
-        date = get_last_nasa_epic_date_with_photos(api_key)
 
     nasa_epic_data = get_nasa_epic_data(api_key, date)
 
@@ -83,7 +80,12 @@ def main():
         type=int,
         default=3
     )
-    parser.add_argument('-d', '--date', help='Дата в формате YYYY-MM-DD')
+    parser.add_argument(
+        '-d',
+        '--date',
+        help='Дата в формате YYYY-MM-DD',
+        default=get_last_nasa_epic_date_with_photos()
+    )
     parser.add_argument('-f', '--folder', help='Папка для сохранения')
 
     args = parser.parse_args()
