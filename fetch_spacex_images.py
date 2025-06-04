@@ -30,9 +30,9 @@ def _get_spacex_image_urls(launch_id: str):
     response = requests.get(url)
     response.raise_for_status()
 
-    json_dict: dict = response.json()
+    launches: dict = response.json()
 
-    return json_dict['links']['flickr']['original']
+    return launches['links']['flickr']['original']
 
 
 def fetch_spacex_images(launch_id: str = None, folder: str = None):
