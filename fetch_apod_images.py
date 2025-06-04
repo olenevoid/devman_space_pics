@@ -53,9 +53,15 @@ def main():
     parser.add_argument(
         'count',
         help='Количество загружаемых снимков',
-        type=int
+        type=int,
+        default=3
     )
-    parser.add_argument('-f', '--folder', help='Папка для сохранения')
+    parser.add_argument(
+        '-f',
+        '--folder',
+        help='Папка для сохранения',
+        default=NASA_FOLDER
+    )
 
     args = parser.parse_args()
 
