@@ -1,4 +1,5 @@
-from os import makedirs, path
+from dotenv import load_dotenv
+from os import makedirs, path, environ
 from image_helpers import get_filename_from_url, save_image, IMAGE_FOLDER_NAME
 import requests
 from argparse import ArgumentParser
@@ -70,10 +71,17 @@ def fetch_nasa_epic_images(
 
 
 def main():
+    load_dotenv()
+    nasa_api_key = environ['NASA_API_KEY']
+
     parser = ArgumentParser(
         description='Загружает фотографий Земли'
     )
-    parser.add_argument('api_key', help='API-ключ NASA')
+    parser.add_argument(
+        'api_key',
+        help='API-ключ NASA',
+        default=nasa_api_key
+    )
     parser.add_argument(
         'limit',
         help='Задает лимит на скачивание',
