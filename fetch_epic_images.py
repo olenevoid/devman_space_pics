@@ -78,7 +78,8 @@ def main():
         description='Загружает фотографий Земли'
     )
     parser.add_argument(
-        'api_key',
+        '-a',
+        '--api_key',
         help='API-ключ NASA',
         default=nasa_api_key
     )
