@@ -107,15 +107,13 @@ def main():
 
     print('Идет загрузка фотографий')
 
-    if args.folder is not None:
-        fetch_nasa_epic_images(
-            args.api_key,
-            date=args.date,
-            folder=args.folder,
-            limit=args.limit)
-    else:
-        fetch_nasa_epic_images(args.api_key, date=args.date, limit=args.limit)
-
+    fetch_nasa_epic_images(
+        args.api_key,
+        date=args.date,
+        folder=args.folder,
+        limit=args.limit
+    )
+    
     print('Загрузка фотографий завершена')
 
 
