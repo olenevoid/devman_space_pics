@@ -17,9 +17,7 @@ def get_all_launches():
     return launches
 
 
-def get_latest_lanuch_image_urls():
-    launches = get_all_launches()
-
+def get_latest_lanuch_image_urls(launches: dict):
     for launch in launches:
         if len(launch['links']['flickr']['original']) > 0:
             return launch['links']['flickr']['original']
@@ -44,7 +42,8 @@ def fetch_spacex_images(launch_id: str = None, folder: str = None):
     if launch_id:
         image_urls = _get_spacex_image_urls(launch_id)
     else:
-        image_urls = get_latest_lanuch_image_urls()
+        launches = get_all_launches()
+        image_urls = get_latest_lanuch_image_urls(launches)
 
     for image_url in image_urls:
         filename = path.join(folder, get_filename_from_url(image_url))
