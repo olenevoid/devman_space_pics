@@ -8,7 +8,14 @@ from argparse import ArgumentParser
 NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
 
 
-def get_nasa_apod_image_urls(api_key: str, count: int):
+def get_nasa_apod_image_urls(nasa_apod_data: dict):
+    
+    image_urls = [item['hdurl'] for item in nasa_apod_data]
+
+    return image_urls
+
+
+def get_nasa_apod_data(api_key: str, count: int):
     url = 'https://api.nasa.gov/planetary/apod'
 
     params = {
@@ -19,17 +26,14 @@ def get_nasa_apod_image_urls(api_key: str, count: int):
     response = requests.get(url, params=params)
     response.raise_for_status()
 
-    json_dict = response.json()
-
-    image_urls = [item['hdurl'] for item in json_dict]
-
-    return image_urls
+    return response.json()
 
 
 def fetch_nasa_apod_images(api_key, count, folder=NASA_FOLDER):
     makedirs(folder, exist_ok=True)
 
-    image_urls = get_nasa_apod_image_urls(api_key, count)
+    nasa_apod_data = get_nasa_apod_data(api_key, count)
+    image_urls = get_nasa_apod_image_urls(nasa_apod_data)
 
     for image_url in image_urls:
         filename = path.join(folder, get_filename_from_url(image_url))
