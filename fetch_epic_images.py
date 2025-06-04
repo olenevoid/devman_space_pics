@@ -94,7 +94,7 @@ def main():
         '-d',
         '--date',
         help='Дата в формате YYYY-MM-DD',
-        default=get_last_nasa_epic_date_with_photos()
+        default=get_last_nasa_epic_date_with_photos(nasa_api_key)
     )
     parser.add_argument(
         '-f',
