@@ -84,7 +84,8 @@ def main():
         default=nasa_api_key
     )
     parser.add_argument(
-        'limit',
+        '-L',
+        '--limit',
         help='Задает лимит на скачивание',
         type=int,
         default=3
