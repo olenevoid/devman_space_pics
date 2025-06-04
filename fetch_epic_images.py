@@ -74,7 +74,12 @@ def main():
         description='Загружает фотографий Земли'
     )
     parser.add_argument('api_key', help='API-ключ NASA')
-    parser.add_argument('limit', help='Задает лимит на скачивание', type=int)
+    parser.add_argument(
+        'limit',
+        help='Задает лимит на скачивание',
+        type=int,
+        default=3
+    )
     parser.add_argument('-d', '--date', help='Дата в формате YYYY-MM-DD')
     parser.add_argument('-f', '--folder', help='Папка для сохранения')
 
