@@ -1,7 +1,9 @@
 from argparse import ArgumentParser
 from image_helpers import get_all_images
-from telegram_bot import ImagePosterBot
+from telegram_bot import send_image
 import random
+from os import environ
+from dotenv import load_dotenv
 
 
 def post_image(image_path: str):
@@ -10,6 +12,10 @@ def post_image(image_path: str):
 
 
 def main():
+    load_dotenv()
+    tg_bot_token = environ['TG_BOT_TOKEN']
+    tg_channel_id = environ['TG_CHANNEL_ID']
+
     parser = ArgumentParser(
         description=(
             'Публикует указанное изображение. Если не использованы '
@@ -25,10 +31,10 @@ def main():
     args = parser.parse_args()
 
     if args.image:
-        post_image(args.image)
+        send_image(tg_bot_token, tg_channel_id, args.image)
     else:
         image_path = random.choice(get_all_images())
-        post_image(image_path)
+        send_image(tg_bot_token, tg_channel_id, image_path)
 
     print('Изображение опубликовано')
 
