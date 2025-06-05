@@ -6,11 +6,6 @@ from os import environ
 from dotenv import load_dotenv
 
 
-def post_image(image_path: str):
-    bot = ImagePosterBot()
-    bot.send_image(image_path)
-
-
 def main():
     load_dotenv()
     tg_bot_token = environ['TG_BOT_TOKEN']
