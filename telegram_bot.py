@@ -15,6 +15,13 @@ class ImagePosterBot():
         self.bot.send_photo(chat_id=self.tg_channel_id, photo=image)
 
 
+def send_image(tg_bot_token, tg_channel_id, image_path):
+    bot = Bot(tg_bot_token)
+
+    with open(image_path, 'rb') as image:
+        bot.send_photo(tg_channel_id, image)
+
+
 def main():
     bot = ImagePosterBot().bot
     print(bot.get_me())
