@@ -19,7 +19,7 @@ def get_all_launches():
 
 def get_latest_lanuch_image_urls(launches: dict):
     for launch in launches:
-        if len(launch['links']['flickr']['original']) > 0:
+        if len(launch['links']['flickr']['original']):
             return launch['links']['flickr']['original']
 
 
