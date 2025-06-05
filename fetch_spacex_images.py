@@ -65,7 +65,7 @@ def main():
         print(f'Идет загрузка фотографий запуска {args.launch_id}')
     else:
         print('Идет загрузка фотографий последнего запуска')
-    
+
     fetch_spacex_images(args.launch_id, args.folder)
 
     print('Загрузка фотографий завершена')

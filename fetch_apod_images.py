@@ -9,7 +9,7 @@ NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
 
 
 def get_nasa_apod_image_urls(nasa_apod_data: dict):
-    
+
     image_urls = [item['hdurl'] for item in nasa_apod_data]
 
     return image_urls
@@ -71,7 +71,7 @@ def main():
     args = parser.parse_args()
 
     print('Идет загрузка фотографий дня NASA')
-    
+
     fetch_nasa_apod_images(args.api_key, args.count, args.folder)
 
     print('Загрузка фотографий завершена')

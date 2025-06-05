@@ -28,7 +28,7 @@ def get_filename_from_url(url):
     return name
 
 
-def get_all_images():    
+def get_all_images():
     images = []
     for (root, _, files) in walk(IMAGE_FOLDER_NAME, topdown=True):
         for filename in files:

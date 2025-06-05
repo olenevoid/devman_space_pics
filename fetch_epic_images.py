@@ -115,7 +115,7 @@ def main():
         folder=args.folder,
         limit=args.limit
     )
-    
+
     print('Загрузка фотографий завершена')
 
 
