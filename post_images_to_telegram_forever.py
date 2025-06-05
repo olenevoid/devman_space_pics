@@ -38,7 +38,7 @@ def main():
         '-d',
         '--delay',
         help='Задержка в минутах. По умолчанию 240 (4 часа)'
-        )
+    )
 
     args = parser.parse_args()
 
