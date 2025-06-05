@@ -55,7 +55,12 @@ def main():
         description='Загружает фотографии с запусков SpaceX'
     )
     parser.add_argument('-L', '--launch_id', help='id запуска')
-    parser.add_argument('-f', '--folder', help='Папка для сохранения')
+    parser.add_argument(
+        '-f',
+        '--folder',
+        help='Папка для сохранения',
+        default=SPACEX_FOLDER
+    )
 
     args = parser.parse_args()
 
