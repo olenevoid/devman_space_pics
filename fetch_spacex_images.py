@@ -33,7 +33,7 @@ def _get_spacex_image_urls(launch_id: str):
     return launches['links']['flickr']['original']
 
 
-def fetch_spacex_images(launch_id: str = None, folder: str = None):
+def fetch_spacex_images(launch_id: str = None, folder: str = SPACEX_FOLDER):
     makedirs(folder, exist_ok=True)
 
     if launch_id:
