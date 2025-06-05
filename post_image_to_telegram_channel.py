@@ -4,11 +4,6 @@ from telegram_bot import ImagePosterBot
 import random
 
 
-def post_random_image():
-    image_path = random.choice(get_all_images())
-    post_image(image_path)
-
-
 def post_image(image_path: str):
     bot = ImagePosterBot()
     bot.send_image(image_path)
@@ -32,7 +27,8 @@ def main():
     if args.image:
         post_image(args.image)
     else:
-        post_random_image()
+        image_path = random.choice(get_all_images())
+        post_image(image_path)
 
     print('Изображение опубликовано')
 
