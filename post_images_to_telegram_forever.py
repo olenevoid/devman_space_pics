@@ -30,7 +30,7 @@ def main():
     tg_bot_token = environ['TG_BOT_TOKEN']
     tg_channel_id = environ['TG_CHANNEL_ID']
 
-    delay = get_delay()
+    delay = getenv('POSTING_DELAY', default=DEFAULT_DELAY)
 
     parser = ArgumentParser(
         description='Публикует изображения в бесконечном цикле'
