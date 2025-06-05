@@ -3,6 +3,7 @@ from os import makedirs, path, environ
 from image_helpers import get_filename_from_url, save_image, IMAGE_FOLDER_NAME
 import requests
 from argparse import ArgumentParser
+from datetime import datetime
 
 
 NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
@@ -36,7 +37,8 @@ def get_nasa_epic_data(api_key: str, date: str):
 
 def get_nasa_epic_image_urls(nasa_epic_data: dict, date: str):
     image_urls = []
-    date_with_slashes = date.replace('-', '/')
+    date: datetime = datetime.fromisoformat(date)
+    date_with_slashes = date.strftime('%Y/%m/%d')
 
     for image_data in nasa_epic_data:
         filename = f'{image_data["image"]}.png'
