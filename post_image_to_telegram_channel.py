@@ -20,16 +20,13 @@ def main():
     parser.add_argument(
         '-i',
         '--image',
-        help=' Путь к изображению для публикации'
+        help=' Путь к изображению для публикации',
+        default=random.choice(get_all_images())
     )
 
     args = parser.parse_args()
 
-    if args.image:
-        send_image(tg_bot_token, tg_channel_id, args.image)
-    else:
-        image_path = random.choice(get_all_images())
-        send_image(tg_bot_token, tg_channel_id, image_path)
+    send_image(tg_bot_token, tg_channel_id, args.image)
 
     print('Изображение опубликовано')
 
