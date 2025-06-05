@@ -22,7 +22,7 @@ def get_filename_from_url(url):
     name = parsed_url.path.split('/')[-1]
     name = unquote(name)
 
-    if len(path.splitext(name)[1]) < 0:
+    if not len(path.splitext(name)[1]):
         name = f'{name}.jpeg'
 
     return name
