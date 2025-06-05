@@ -32,7 +32,9 @@ def main():
     parser.add_argument(
         '-d',
         '--delay',
-        help='Задержка в минутах. По умолчанию 240 (4 часа)'
+        help='Задержка в минутах. По умолчанию 240 (4 часа)',
+        default=delay,
+        type=int
     )
 
     args = parser.parse_args()
@@ -40,10 +42,8 @@ def main():
     while True:
         images = get_all_images()
         random.shuffle(images)
-        if args.delay:
-            post_images(images, tg_bot_token, tg_channel_id, args.delay)
-        else:
-            post_images(images, tg_bot_token, tg_channel_id, delay)
+
+        post_images(images, tg_bot_token, tg_channel_id, args.delay)
 
 
 if __name__ == '__main__':
