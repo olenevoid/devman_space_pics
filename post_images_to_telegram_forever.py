@@ -18,13 +18,6 @@ def post_images(images, tg_bot_token, tg_channel_id, delay=DEFAULT_DELAY):
         sleep(delay*60)
 
 
-def get_delay():
-    delay = getenv('POSTING_DELAY')
-    if delay:
-        return int(delay)
-    return DEFAULT_DELAY
-
-
 def main():
     load_dotenv()
     tg_bot_token = environ['TG_BOT_TOKEN']
