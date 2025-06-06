@@ -23,7 +23,7 @@ def get_latest_lanuch_image_urls(launches: dict):
             return launch['links']['flickr']['original']
 
 
-def _get_spacex_image_urls(launch_id: str):
+def get_spacex_image_urls(launch_id: str):
     url = f'https://api.spacexdata.com/v5/launches/{launch_id}'
     response = requests.get(url)
     response.raise_for_status()
