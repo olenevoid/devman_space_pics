@@ -37,7 +37,7 @@ def fetch_spacex_images(launch_id: str = None, folder: str = SPACEX_FOLDER):
     makedirs(folder, exist_ok=True)
 
     if launch_id:
-        image_urls = _get_spacex_image_urls(launch_id)
+        image_urls = get_spacex_image_urls(launch_id)
     else:
         launches = get_all_launches()
         image_urls = get_latest_lanuch_image_urls(launches)
