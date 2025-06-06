@@ -8,7 +8,7 @@ from argparse import ArgumentParser
 NASA_FOLDER = path.join(IMAGE_FOLDER_NAME, 'nasa')
 
 
-def get_nasa_apod_data(api_key: str, count: int):
+def get_nasa_apod_photos(api_key: str, count: int):
     url = 'https://api.nasa.gov/planetary/apod'
 
     params = {
@@ -25,7 +25,7 @@ def get_nasa_apod_data(api_key: str, count: int):
 def fetch_nasa_apod_images(api_key, count, folder=NASA_FOLDER):
     makedirs(folder, exist_ok=True)
 
-    nasa_apod_data = get_nasa_apod_data(api_key, count)
+    nasa_apod_data = get_nasa_apod_photos(api_key, count)
     image_urls = [item['hdurl'] for item in nasa_apod_data]
 
     for image_url in image_urls:
