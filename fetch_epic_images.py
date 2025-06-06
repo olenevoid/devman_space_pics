@@ -58,9 +58,9 @@ def fetch_nasa_epic_images(
 
     makedirs(folder, exist_ok=True)
 
-    nasa_epic_data = get_nasa_epic_photos(api_key, date)
+    nasa_epic_photos = get_nasa_epic_photos(api_key, date)
 
-    image_urls = get_nasa_epic_image_urls(nasa_epic_data, date)
+    image_urls = get_nasa_epic_image_urls(nasa_epic_photos, date)
 
     params = {'api_key': api_key}
 
