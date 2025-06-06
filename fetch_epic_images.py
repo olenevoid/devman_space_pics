@@ -22,7 +22,7 @@ def get_last_nasa_epic_date_with_photos(api_key: str):
     return response.json()[-1]
 
 
-def get_nasa_epic_data(api_key: str, date: str):
+def get_nasa_epic_photos(api_key: str, date: str):
     url = f'https://api.nasa.gov/EPIC/api/natural/date/{date}'
 
     params = {
@@ -58,7 +58,7 @@ def fetch_nasa_epic_images(
 
     makedirs(folder, exist_ok=True)
 
-    nasa_epic_data = get_nasa_epic_data(api_key, date)
+    nasa_epic_data = get_nasa_epic_photos(api_key, date)
 
     image_urls = get_nasa_epic_image_urls(nasa_epic_data, date)
 
