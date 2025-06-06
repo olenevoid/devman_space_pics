@@ -25,8 +25,8 @@ def get_nasa_apod_photos(api_key: str, count: int):
 def fetch_nasa_apod_images(api_key, count, folder=NASA_FOLDER):
     makedirs(folder, exist_ok=True)
 
-    nasa_apod_data = get_nasa_apod_photos(api_key, count)
-    image_urls = [item['hdurl'] for item in nasa_apod_data]
+    nasa_apod_photos = get_nasa_apod_photos(api_key, count)
+    image_urls = [photo['hdurl'] for photo in nasa_apod_photos]
 
     for image_url in image_urls:
         filename = path.join(folder, get_filename_from_url(image_url))
