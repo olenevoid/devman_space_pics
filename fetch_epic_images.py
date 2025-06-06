@@ -35,13 +35,13 @@ def get_nasa_epic_photos(api_key: str, date: str):
     return response.json()
 
 
-def get_nasa_epic_image_urls(nasa_epic_data: dict, date: str):
+def get_nasa_epic_image_urls(nasa_epic_photos: dict, date: str):
     image_urls = []
     date: datetime = datetime.fromisoformat(date)
     date_with_slashes = date.strftime('%Y/%m/%d')
 
-    for image_data in nasa_epic_data:
-        filename = f'{image_data["image"]}.png'
+    for photo in nasa_epic_photos:
+        filename = f'{photo["image"]}.png'
         image_url = 'https://api.nasa.gov/EPIC/archive/natural/{0}/png/{1}'
         image_url = image_url.format(date_with_slashes, filename)
 
